@@ -1,0 +1,9 @@
+{
+  "resourceGroup": "data-vault-medallion-rg",
+  "storageAccount": "dvstoragedev123456",
+  "databricksWorkspace": "dv-workspace-dev-123456",
+  "keyVault": "dv-kv-dev-123456",
+  "location": "eastus",
+  "environment": "dev",
+  "containers": ["bronze", "silver", "gold", "sample-data"]
+}

@@ -45,3 +45,22 @@ git clone https://github.com/your-username/data-vault-medallion-azure.git
 
 cd data-vault-medallion-azure
 
+
+
+
+```markdown
+## Azure Infrastructure Setup
+
+### Prerequisites
+- Azure CLI installed
+- Azure subscription with appropriate permissions
+
+### Quick Setup
+```bash
+# Run infrastructure setup
+cd scripts/infrastructure
+./azure-setup.sh
+
+# Validate setup
+./validate-setup.ps1
+
