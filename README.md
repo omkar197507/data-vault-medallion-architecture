@@ -64,3 +64,22 @@ cd scripts/infrastructure
 # Validate setup
 ./validate-setup.ps1
 
+
+
+
+
+```markdown
+## Sample Data Generation
+
+### Generate Sample Data
+```bash
+# Install dependencies
+pip install -r scripts/data-generation/requirements.txt
+
+# Generate data
+cd scripts/data-generation
+python generate-sample-data.py
+
+# Validate data
+python validate-data.py
+
