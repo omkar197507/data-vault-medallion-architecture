@@ -83,3 +83,16 @@ python generate-sample-data.py
 # Validate data
 python validate-data.py
 
+
+
+Add bronze layer section:
+
+```markdown
+## Bronze Layer Implementation
+
+### Data Ingestion
+```python
+# Run bronze layer ingestion
+cd notebooks/1_bronze
+databricks notebook run 01_bronze_ingestion.py
+
