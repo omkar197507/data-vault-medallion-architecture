@@ -96,3 +96,46 @@ Add bronze layer section:
 cd notebooks/1_bronze
 databricks notebook run 01_bronze_ingestion.py
 
+
+ 
+
+Add Silver Layer section:
+
+```markdown
+## Silver Layer - Data Vault Implementation
+
+### Data Vault Modeling
+```python
+# Run Data Vault implementation
+cd notebooks/2_silver
+databricks notebook run 01_data_vault_modeling.py
+
+
+Data Vault Components
+🔑 Hub Tables: 3 tables (Customer, Product, Order business keys)
+
+🔗 Link Tables: 2 tables (Customer-Order, Order-Product relationships)
+
+📊 Satellite Tables: 3 tables (Attributes with history)
+
+
+Features
+✅ Data Vault 2.0 methodology implemented
+
+✅ SHA-256 hash keys for business key identification
+
+✅ Historical data tracking in satellites
+
+✅ Scalable relationship modeling
+
+✅ Audit trail through metadata
+
+
+## Step 5.4: Run the Data Vault Implementation
+
+### Execute in Databricks:
+1. **Upload** the silver layer notebook to Databricks
+2. **Run** `01_data_vault_modeling.py` notebook
+3. **Verify** Data Vault tables are created in silver container
+
+ 
