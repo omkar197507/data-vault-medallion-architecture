@@ -1,0 +1,104 @@
+-- HUB_CUSTOMER: Business keys for customers
+CREATE TABLE silver.hub_customer (
+    customer_hk STRING PRIMARY KEY,     -- Hash of customer_id
+    customer_id INT,                    -- Business key
+    load_timestamp TIMESTAMP,           -- When loaded
+    record_source STRING                -- Source system
+);
+
+-- HUB_PRODUCT: Business keys for products  
+CREATE TABLE silver.hub_product (
+    product_hk STRING PRIMARY KEY,      -- Hash of product_id
+    product_id INT,                     -- Business key
+    load_timestamp TIMESTAMP,
+    record_source STRING
+);
+
+-- HUB_ORDER: Business keys for orders
+CREATE TABLE silver.hub_order (
+    order_hk STRING PRIMARY KEY,        -- Hash of order_id
+    order_id INT,                       -- Business key
+    load_timestamp TIMESTAMP,
+    record_source STRING
+);
+
+
+
+-- LINK_CUSTOMER_ORDER: Relationships between customers and orders
+
+CREATE TABLE silver.link_customer_order (
+    customer_order_hk STRING PRIMARY KEY, -- Hash of customer_id + order_id
+    customer_hk STRING FOREIGN KEY REFERENCES silver.hub_customer(customer_hk),
+    order_hk STRING FOREIGN KEY REFERENCES silver.hub_order(order_hk),
+    load_timestamp TIMESTAMP,
+    record_source STRING
+);
+
+-- LINK_ORDER_PRODUCT: Relationships between orders and products
+
+CREATE TABLE silver.link_order_product (
+    order_product_hk STRING PRIMARY KEY, -- Hash of order_id + product_id
+    order_hk STRING FOREIGN KEY REFERENCES silver.hub_order(order_hk),
+    product_hk STRING FOREIGN KEY REFERENCES silver.hub_product(product_hk),
+    quantity INT,
+    unit_price DECIMAL(10,2),
+    total_price DECIMAL(10,2),
+    load_timestamp TIMESTAMP,
+    record_source STRING
+);
+
+
+
+-- SAT_CUSTOMER_DETAILS: Customer attributes with history
+CREATE TABLE silver.sat_customer_details (
+    customer_hk STRING FOREIGN KEY REFERENCES silver.hub_customer(customer_hk),
+    load_timestamp TIMESTAMP,
+    first_name STRING,
+    last_name STRING,
+    email STRING,
+    phone STRING,
+    address STRING,
+    city STRING,
+    state STRING,
+    zip_code STRING,
+    created_date DATE,
+    updated_date DATE,
+    record_source STRING,
+    effective_date DATE,
+    end_date DATE,
+    is_current BOOLEAN,
+    PRIMARY KEY (customer_hk, load_timestamp)
+);
+
+-- SAT_PRODUCT_DETAILS: Product attributes with history
+CREATE TABLE silver.sat_product_details (
+    product_hk STRING FOREIGN KEY REFERENCES silver.hub_product(product_hk),
+    load_timestamp TIMESTAMP,
+    product_name STRING,
+    category STRING,
+    price DECIMAL(10,2),
+    cost DECIMAL(10,2),
+    created_date DATE,
+    updated_date DATE,
+    record_source STRING,
+    effective_date DATE,
+    end_date DATE,
+    is_current BOOLEAN,
+    PRIMARY KEY (product_hk, load_timestamp)
+);
+
+-- SAT_ORDER_DETAILS: Order attributes with history
+CREATE TABLE silver.sat_order_details (
+    order_hk STRING FOREIGN KEY REFERENCES silver.hub_order(order_hk),
+    load_timestamp TIMESTAMP,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    status STRING,
+    created_date DATE,
+    record_source STRING,
+    effective_date DATE,
+    end_date DATE,
+    is_current BOOLEAN,
+    PRIMARY KEY (order_hk, load_timestamp)
+);
