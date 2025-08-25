@@ -138,4 +138,16 @@ Features
 2. **Run** `01_data_vault_modeling.py` notebook
 3. **Verify** Data Vault tables are created in silver container
 
- 
+
+## Gold Layer - Dimension Modelling Implementation
+
+ ✅ **Dimension Tables**: Date, Customer, Product dimensions
+ ✅ **Fact Tables**: Sales facts and order summaries
+ ✅ **Star Schema**: Optimized for analytics and reporting
+ ✅ **Business Metrics**: Revenue, quantities, averages
+ ✅ **Ready for BI**: Perfect for Power BI, Tableau, etc.
+Next Steps
+**Connect Power BI/Tableau** to Gold Layer
+**Create dashboards** and reports
+**Schedule refreshes** with Azure Data Factory
+**Monitor data quality** with Great Expectations
